@@ -82,7 +82,7 @@ Table of Contents
      6.1.  Version negotiation . . . . . . . . . . . . . . . . . . .   6
    7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   6
    8.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
-     8.1.  Normative References  . . . . . . . . . . . . . . . . . .   7
+     8.1.  Normative References  . . . . . . . . . . . . . . . . . .   6
      8.2.  Informative References  . . . . . . . . . . . . . . . . .   7
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   7
 
@@ -283,9 +283,9 @@ Internet-Draft               MLS Federation                    July 2020
 
 
    enum {
-           P256_SHA256_AES128GCM(0x0000),
-           X25519_SHA256_AES128GCM(0x0001),
-           (0xFFFF)
+       P256_SHA256_AES128GCM(0x0000),
+       X25519_SHA256_AES128GCM(0x0001),
+       (0xFFFF)
    } CipherSuite;
 
    struct {
@@ -294,16 +294,16 @@ Internet-Draft               MLS Federation                    July 2020
    }  GetClientInitKeyRequest;
 
    struct {
-           opaque client_init_key_id<0..255>;
-           CipherSuite cipher_suites<0..255>;
-           HPKEPublicKey init_keys<1..2^16-1>;
-           Credential credential;
-           opaque signature<0..2^16-1>;
+       opaque client_init_key_id<0..255>;
+       CipherSuite cipher_suites<0..255>;
+       HPKEPublicKey init_keys<1..2^16-1>;
+       Credential credential;
+       opaque signature<0..2^16-1>;
    } ClientInitKey;
 
    struct {
-           opaque identity<0..2^16-1>;
-           ClientInitKey client_init_key;
+       opaque identity<0..2^16-1>;
+       ClientInitKey client_init_key;
    } ClientInitKeyBundle;
 
    The delivery service will return one or more client init key bundles,
@@ -312,9 +312,6 @@ Internet-Draft               MLS Federation                    July 2020
    struct {
       CLientInitKeyBundle client_init_keys<0..2^32-1>;
    }  GetClientInitKeyResponse;
-
-   OPEN QUESTION: What if different clients have different cipher
-   suites?
 
 6.  Security Considerations
 
@@ -331,14 +328,15 @@ Internet-Draft               MLS Federation                    July 2020
 
 8.  References
 
+8.1.  Normative References
+
+
 
 
 Omara & Robert           Expires 21 January 2021                [Page 6]
 
 Internet-Draft               MLS Federation                    July 2020
 
-
-8.1.  Normative References
 
    [I-D.irtf-cfrg-hpke]
               Barnes, R., Bhargavan, K., and C. Wood, "Hybrid Public Key
@@ -384,6 +382,8 @@ Authors' Addresses
    Wire
 
    Email: raphael@wire.com
+
+
 
 
 
